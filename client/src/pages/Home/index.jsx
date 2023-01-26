@@ -55,9 +55,13 @@ export default function Index() {
   useEffect(() => {
     getProducts()
   }, []) 
-  function mapData() {
 
+  async function deleteByid(id){
+    console.log(id,)
+    let result = await axios.delete(URL,{id:id , ee:"dd"})
+    getProducts()
   }
+
 
   return (
     <div>
@@ -139,8 +143,7 @@ export default function Index() {
           </div>
           <div className="row">
             {data.map(x => {
-              console.log('se', searchVal)
-              if (x.name.includes(searchVal)) {
+              if (x.name.toLowerCase().includes(searchVal.toLowerCase())) {
                 return (
                   <div className="box">
                     <div className="img-wrap">
@@ -150,6 +153,10 @@ export default function Index() {
                       <p className="category"> {x.category} </p>
                       <h4 className="name"> {x.name} </h4>
                       <p className="price"> {x.price} </p>
+                    </div>
+                    <div className="action">
+                      <button> Add to basket  </button>
+                      <button onClick={() => deleteByid(x._id)}> Delete  </button>
                     </div>
                   </div>
                 )

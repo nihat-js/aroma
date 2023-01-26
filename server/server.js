@@ -7,9 +7,8 @@ const PORT = process.env.PORT || 8080
 const productRouter = require('./routers/product')
 
 
-
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 app.use("/product",productRouter)
 
 mongoose.set('strictQuery', false);

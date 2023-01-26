@@ -49,6 +49,7 @@ async function add(req,res){
 }
 
 async function deleteById(req,res){
+  console.log('e',req.body.id)
   if (req.body.id){
     return res.status(404).send('Not valid id')
   }
